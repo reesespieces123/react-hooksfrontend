@@ -7,10 +7,12 @@ const AddEmployeeComponent = () => {
   const [address, setAddress] = useState("");
   const [alienauthorizationnumber, setAlienauthorizationnumber] = useState("");
   const [aptnumber, setAptnumber] = useState("");
-  const [citizenshipstatus1, setCitizenshipstatus1] = useState("");
-  const [citizenshipstatus2, setCitizenshipstatus2] = useState("");
-  const [citizenshipstatus3, setCitizenshipstatus3] = useState("");
-  const [city, setCity] = useState("");
+  const [citizenshipstatus, setCitizenshipstatus] = useState("");
+const [formadmissionnumber, setformadmissionnumber] = useState("");
+  const [foreignpassportnumber, setforeignpassportnumber] = useState("");
+    const [countryofissuance, setcountryofissuance] = useState("");
+    const [expirationdate, setexpirationdate] = useState("");
+   const [city, setCity] = useState("");
   const [dateofbirth, setDateofbirth] = useState("");
   const [employee_email, setEmployee_email] = useState("");
   const [employeesignature, setEmployeesignature] = useState("");
@@ -34,9 +36,11 @@ const AddEmployeeComponent = () => {
       address,
       alienauthorizationnumber,
       aptnumber,
-      citizenshipstatus1,
-      citizenshipstatus2,
-      citizenshipstatus3,
+      citizenshipstatus,
+      formadmissionnumber,
+foreignpassportnumber,
+countryofissuance,
+expirationdate,
       city,
       dateofbirth,
       employee_email,
@@ -79,10 +83,11 @@ const AddEmployeeComponent = () => {
         setAddress(response.data.address);
         setAlienauthorizationnumber(response.data.alienauthorizationnumber);
         setAptnumber(response.data.aptnumber);
-        setCitizenshipstatus1(response.data.citizenshipstatus1);
-        setCitizenshipstatus2(response.data.citizenshipstatus2);
-        setCitizenshipstatus3(response.data.citizenshipstatus3);
-
+        setCitizenshipstatus(response.data.citizenshipstatus);
+        setformadmissionnumber(response.data.formadmissionnumber);
+        setforeignpassportnumber(response.data.foreignpassportnumber);
+        setcountryofissuance(response.data.countryofissuance);
+        setexpirationdate(response.data.expirationdate);
         setCity(response.data.city);
         setDateofbirth(response.data.dateofbirth);
         setEmployee_email(response.data.employee_email);
@@ -122,7 +127,7 @@ const AddEmployeeComponent = () => {
                 <div className="form-group mb-2">
                   <label className="form-label">
                     {" "}
-                    Last Name (Family Name) :
+                    Last Name (Family Name):
                   </label>
                   <input
                     type="text"
@@ -137,7 +142,7 @@ const AddEmployeeComponent = () => {
                 <div className="form-group mb-2">
                   <label className="form-label">
                     {" "}
-                    First Name (Given Name) :
+                    First Name (Given Name):
                   </label>
                   <input
                     type="text"
@@ -150,7 +155,7 @@ const AddEmployeeComponent = () => {
                   ></input>
                 </div>
                 <div className="form-group mb-2">
-                  <label className="form-label"> Middle Initial :</label>
+                  <label className="form-label"> Middle Initial:</label>
                   <input
                     type="text"
                     placeholder="Enter Middle Initial"
@@ -192,7 +197,7 @@ const AddEmployeeComponent = () => {
                   ></input>
                 </div>
                 <div className="form-group mb-2">
-                  <label className="form-label">Apartment Number :</label>
+                  <label className="form-label">Apartment Number:</label>
                   <input
                     type="text"
                     placeholder="Enter Apartment Number"
@@ -204,7 +209,7 @@ const AddEmployeeComponent = () => {
                   ></input>
                 </div>
                 <div className="form-group mb-2">
-                  <label className="form-label">City or Town :</label>
+                  <label className="form-label">City or Town:</label>
                   <input
                     type="text"
                     placeholder="Enter City"
@@ -216,7 +221,7 @@ const AddEmployeeComponent = () => {
                   ></input>
                 </div>
                 <div className="form-group mb-2">
-                  <label className="form-label"> State :</label>
+                  <label className="form-label"> State:</label>
                   <input
                     type="text"
                     placeholder="Enter State"
@@ -228,7 +233,7 @@ const AddEmployeeComponent = () => {
                   ></input>
                 </div>
                 <div className="form-group mb-2">
-                  <label className="form-label"> ZIP Code :</label>
+                  <label className="form-label"> ZIP Code:</label>
                   <input
                     type="text"
                     placeholder="Enter Zip Code"
@@ -241,7 +246,7 @@ const AddEmployeeComponent = () => {
                 </div>
                 <div className="form-group mb-2">
                   <label className="form-label">
-                    Date of Birth (mm/dd/yyyy) :
+                    Date of Birth (mm/dd/yyyy):
                   </label>
                   <input
                     type="date"
@@ -254,7 +259,7 @@ const AddEmployeeComponent = () => {
                   ></input>
                 </div>
                 <div className="form-group mb-2">
-                  <label className="form-label"> Social Security :</label>
+                  <label className="form-label"> Social Security:</label>
                   <input
                     type="text"
                     placeholder="Enter Social Security Number"
@@ -267,7 +272,7 @@ const AddEmployeeComponent = () => {
                 </div>
                 <div className="form-group mb-2">
                   <label className="form-label">
-                    Employee's Email Address :
+                    Employee's Email Address:
                   </label>
                   <input
                     type="email"
@@ -294,73 +299,110 @@ const AddEmployeeComponent = () => {
                     onChange={(e) => setTelephone(e.target.value)}
                   ></input>
                 </div>
-                <div class="form-group mb-2">
+                <div class="radio">
                   <label class="form-label">Citizenship Status:</label>
+                  <div class="radio">
+                    <label>
+                      <input type="radio" name="citizenshipstatus"></input>A
+                      citizen of the United States
+                    </label>
+                  </div>
+                  <div class="radio">
+                    <label>
+                      <input type="radio" name="citizenshipstatus"></input>A
+                      noncitizen national of the United States (see
+                      instructions)
+                    </label>
+                  </div>
+                  <div class="radio">
+                    <label>
+                      <input type="radio" name="citizenshipstatus"></input>A
+                      lawful permanent resident (Alien Registration Number/USCIS
+                      Number)
+                      <input
+                        type="text"
+                        placeholder="Enter Alien Authorization Number"
+                        name="alienauthorizationnumber"
+                        className="form-control"
+                        value={alienauthorizationnumber}
+                        onChange={(e) =>
+                          setAlienauthorizationnumber(e.target.value)
+                        }
+                      ></input>
+                    </label>
+                  </div>
+                  <div class="radio ">
+                    <label>
+                      <input type="radio" name="citizenshipstatus"></input>An
+                      alien authorized to work until (expiration date, if
+                      applicable, mm/dd/yyyy){" "}
+                      <input
+                        type="date"
+                       
+                        name="expirationdate"
+                        className="form-control"
+                        required
+                        value={expirationdate}
+                        onChange={(e) => setexpirationdate(e.target.value)}
+                      ></input>
+                    </label>
+                  </div>
+                  <label for="citizenshipstatus"></label>
+                </div>
+                <div className="form-group mb-2">
+                  <h5>
+                    Aliens authorized to work must provide only one of the
+                    following document numbers to complete Form I-9: An Alien
+                    Registration Number/USCIS Number OR Form I-94 Admission
+                    Number OR Foreign Passport Number.
+                  </h5>
                   <ol>
                     <li>
                       <input
-                        type="radio"
-                        name="citizenshipstatus1"
-                        class="form-control"
-                        value=""
+                        type="text"
+                        placeholder="Enter Alien Registration Number"
+                        name="alienauthorizationnumber"
+                        className="form-control"
+                        required
+                        value={alienauthorizationnumber}
+                        onChange={(e) =>
+                          setAlienauthorizationnumber(e.target.value)
+                        }
                       ></input>
-                      <label for="citizenshipstatus1">
-                        A Citizen of the United States{" "}
-                      </label>
                     </li>
+                    <h6>OR</h6>
                     <li>
                       <input
-                        type="radio"
-                        name="citizenshipstatus2"
-                        class="form-control"
-                        value=""
+                        type="text"
+                        placeholder="Enter Form I-94 Admission Number"
+                        name="formadmissionnumber"
+                        className="form-control"
+                        value={formadmissionnumber}
+                        onChange={(e) => setformadmissionnumber(e.target.value)}
                       ></input>
-                      <label for="citizenshipstatus2">
-                        A noncitizen national of the United States(See
-                        instructions){" "}
-                      </label>
                     </li>
+                    <h6>OR</h6>
                     <li>
                       <input
-                        type="radio"
-                        name="citizenshipstatus3"
-                        class="form-control"
-                        value=""
+                        type="text"
+                        placeholder="Enter Foreign Passport Number"
+                        name="foreignpassportnumber"
+                        className="form-control"
+                        value={foreignpassportnumber}
+                        onChange={(e) =>
+                          setforeignpassportnumber(e.target.value)
+                        }
                       ></input>
-                      <label for="citizenshipstatus3">
-                        A lawful permanent resident :{" "}
-                        <input type="text"></input>
-                      </label>
-                    </li>
-                    <li>
                       <input
-                        type="radio"
-                        name="citizenshipstatus3"
-                        class="form-control"
-                        value=""
+                        type="text"
+                        placeholder="Enter Country of Issuance"
+                        name="countryofissuance"
+                        className="form-control"
+                        value={countryofissuance}
+                        onChange={(e) => setcountryofissuance(e.target.value)}
                       ></input>
-                      <label for="citizenshipstatus3">
-                        An alien authorized to work until (expiration date, if
-                        applicable, mm/dd/yyyy) <input type="date"></input>
-                      </label>
                     </li>
                   </ol>
-                </div>
-
-                <div className="form-group mb-2">
-                  <label className="form-label">
-                    Alien Authorization Number :
-                  </label>
-                  <input
-                    type="text"
-                    placeholder="Enter Alien Authorization Number"
-                    name="alienauthorizationnumber"
-                    className="form-control"
-                    value={alienauthorizationnumber}
-                    onChange={(e) =>
-                      setAlienauthorizationnumber(e.target.value)
-                    }
-                  ></input>
                 </div>
 
                 <div className="form-group mb-2">

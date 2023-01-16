@@ -1,18 +1,24 @@
 import React, { useState, useEffect } from "react";
 import { Link, useHistory, useParams } from "react-router-dom";
 import EmployeeService from "../services/EmployeeService";
+import { Form, Button } from "react-bootstrap";
 
 const AddEmployeeComponent = () => {
   const [socialSecurity, setSocialSecurity] = useState("");
   const [address, setAddress] = useState("");
   const [alienauthorizationnumber, setAlienauthorizationnumber] = useState("");
   const [aptnumber, setAptnumber] = useState("");
+
   const [citizenshipstatus, setCitizenshipstatus] = useState("");
-const [formadmissionnumber, setformadmissionnumber] = useState("");
+  const [noncitizennational, setnoncitizennational] = useState("");
+  const [lawfulpermanentresident, setlawfulpermanentresident] = useState("");
+  const [authorizedalien, setauthorizedalien] = useState("");
+
+  const [formadmissionnumber, setformadmissionnumber] = useState("");
   const [foreignpassportnumber, setforeignpassportnumber] = useState("");
-    const [countryofissuance, setcountryofissuance] = useState("");
-    const [expirationdate, setexpirationdate] = useState("");
-   const [city, setCity] = useState("");
+  const [countryofissuance, setcountryofissuance] = useState("");
+  const [expirationdate, setexpirationdate] = useState("");
+  const [city, setCity] = useState("");
   const [dateofbirth, setDateofbirth] = useState("");
   const [employee_email, setEmployee_email] = useState("");
   const [employeesignature, setEmployeesignature] = useState("");
@@ -37,10 +43,13 @@ const [formadmissionnumber, setformadmissionnumber] = useState("");
       alienauthorizationnumber,
       aptnumber,
       citizenshipstatus,
+      noncitizennational,
+      lawfulpermanentresident,
+      authorizedalien,
       formadmissionnumber,
-foreignpassportnumber,
-countryofissuance,
-expirationdate,
+      foreignpassportnumber,
+      countryofissuance,
+      expirationdate,
       city,
       dateofbirth,
       employee_email,
@@ -84,6 +93,10 @@ expirationdate,
         setAlienauthorizationnumber(response.data.alienauthorizationnumber);
         setAptnumber(response.data.aptnumber);
         setCitizenshipstatus(response.data.citizenshipstatus);
+        setnoncitizennational(response.data.noncitizennational);
+        setlawfulpermanentresident(response.data.lawfulpermanentresident);
+        setauthorizedalien(response.data.authorizedalien);
+
         setformadmissionnumber(response.data.formadmissionnumber);
         setforeignpassportnumber(response.data.foreignpassportnumber);
         setcountryofissuance(response.data.countryofissuance);
@@ -303,22 +316,27 @@ expirationdate,
                   <label class="form-label">Citizenship Status:</label>
                   <div class="radio">
                     <label>
-                      <input type="radio" name="citizenshipstatus"></input>A
-                      citizen of the United States
+                      <input
+                        type="radio"
+                        name="citizenshipstatus"
+                        value={citizenshipstatus}
+                         className="form-control"
+                        onChange={(e) => setCitizenshipstatus(e.target.value)}
+                      ></input>
+                      A citizen of the United States
                     </label>
-                  </div>
-                  <div class="radio">
-                    <label>
-                      <input type="radio" name="citizenshipstatus"></input>A
+                     <label>
+                      <input type="radio" name="noncitizennational"></input>A
                       noncitizen national of the United States (see
                       instructions)
                     </label>
-                  </div>
-                  <div class="radio">
-                    <label>
-                      <input type="radio" name="citizenshipstatus"></input>A
-                      lawful permanent resident (Alien Registration Number/USCIS
-                      Number)
+                     <label>
+                      <input
+                        type="radio"
+                        name="lawfulpermanentresident"
+                      ></input>
+                      A lawful permanent resident (Alien Registration
+                      Number/USCIS Number)
                       <input
                         type="text"
                         placeholder="Enter Alien Authorization Number"
@@ -330,15 +348,14 @@ expirationdate,
                         }
                       ></input>
                     </label>
-                  </div>
-                  <div class="radio ">
+                  
+                  
                     <label>
-                      <input type="radio" name="citizenshipstatus"></input>An
+                      <input type="radio" name="authorizedalien"></input>An
                       alien authorized to work until (expiration date, if
                       applicable, mm/dd/yyyy){" "}
                       <input
                         type="date"
-                       
                         name="expirationdate"
                         className="form-control"
                         required

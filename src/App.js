@@ -1,32 +1,38 @@
 import "./App.css";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import FooterComponent from "./components/FooterComponent";
-import HeaderComponent from "./components/HeaderComponent";
-import ListEmployeeComponent from "./components/ListEmployeeComponent";
-import AddEmployeeComponent from "./components/AddEmployeeComponent";
+// importing components from react-router-dom package
+import { Switch, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router} from 'react-router-dom';
+// import FooterComponent from "./components/FooterComponent";
+// import HeaderComponent from "./components/HeaderComponent";
+// import ListEmployeeComponent from "./components/ListEmployeeComponent";
+// import AddEmployeeComponent from "./components/AddEmployeeComponent";
+
+//import Home page
+import Home from "./pages/Home";
+// import Auditor page
+import Auditor from "./pages/Auditor";
+// import Employee page
+import Employee from "./pages/Employee";
+// import Reviewer page
+import Reviewer from "./pages/Reviewer";
 
 function App() {
   return (
-    <div>
-      <Router>
-        <HeaderComponent />
-        <div className="container">
-          <Switch>
-            <Route exact path="/" component={ListEmployeeComponent}></Route>
-            <Route path="/employees" component={ListEmployeeComponent}></Route>
-            <Route
-              path="/add-employee"
-              component={AddEmployeeComponent}
-            ></Route>
-            <Route
-              path="/edit-employee/:id"
-              component={AddEmployeeComponent}
-            ></Route>
-          </Switch>
-        </div>
-        <FooterComponent />
-      </Router>
-    </div>
+    <>
+    <Router>
+      <Switch>
+      <Route exact path="/" component={Home} />
+      <Route path="/Auditor" component={Auditor} />
+      <Route path="/Employee" component={Employee} />
+      <Route path="/Reviewer" component={Reviewer} />
+
+      {/* If any route mismatches the upper 
+          route endpoints then, redirect triggers 
+          and redirects app to home component with to="/" */}
+          <Redirect to="/" />
+      </Switch>
+    </Router>
+    </>
   );
 }
 
